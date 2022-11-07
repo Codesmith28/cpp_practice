@@ -11,8 +11,7 @@ int main()
 
     cout << "side 2\n";
     int y;
-    cin >> y;
-
+    cin >> y; 
     cout << "side 3\n";
     int z;
     cin >> z;
@@ -94,3 +93,5 @@ int main()
     
     return 0;
 }
+
+// 6969
