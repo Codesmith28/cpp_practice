@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-string dup(string s)
+string movex(string s)
 {
     if (s.length() == 0)
     {
@@ -9,19 +9,19 @@ string dup(string s)
     }
 
     char ch = s[0];
-    string ans = dup(s.substr(1));
+    string ans = movex(s.substr(1));
 
-    if (ch == ans[0])
+    if (ch == 'x')
     {
-        return ans;
+        return ans + ch;
     }
 
-    return (ch + ans);
+    return ch + ans;
 }
 
 int main()
 {
     string s;
     cin >> s;
-    cout << dup(s);
+    cout << movex(s);
 }
