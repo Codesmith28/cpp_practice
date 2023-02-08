@@ -27,18 +27,19 @@ int knapSack(int value[], int wt[], int n, int W)
 
 int main()
 {
-    int n,W; cin>>n>>W;
-    int wt[n],value[n];
+    int n, W;
+    cin >> n >> W;
+    int wt[n], value[n];
 
-    for(int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin>>wt[i];
+        cin >> wt[i];
     }
-    for(int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin>>value[i];
+        cin >> value[i];
     }
 
-    cout<<knapSack(value,wt,n,W);
+    cout << knapSack(value, wt, n, W);
     return 0;
 }
