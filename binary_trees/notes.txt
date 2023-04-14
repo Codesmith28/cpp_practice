@@ -1,0 +1,57 @@
+here the data is stored in hierarchical level
+
+levels in an actual tree: 
+    - roots
+    - branches
+    - leaves
+
+in computers:
+    - root is the first level
+    - leaves are the last level
+
+in a binary tree:
+    - each node can have atmost 2 children
+        > left child
+        > right child
+    
+properites of a binary tree:
+    - max nodes at level n = 2^n
+    - max nodes of a tree with n levels = (2^n) - 1
+    - min levels for n nodes = log_2_(n+1)
+    - a binTree with n leaves has atleast log_2_(n+1)+1 levels
+
+implementation of binTree:
+struct Node {
+    int data;
+    struct Node *right;
+    struct Node *left;
+
+    // constructor 
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+}
+
+Traversals:
+1) Preorder Traversals
+2) Inorder Traversals
+3) Postorder Travels
+
+
+PREORDER TRAVERSALS:
+    print the root
+    then go its left sub-tree
+    then on returing to the root go to its right sub-tree
+
+INORDER TRAVERSALS:
+    travel the entire left subTree
+    then write the value of root
+    travel the entire right subTree
+
+POSTORDER TRAVERSALS:
+    travel the entire left subTree
+    travel the entire right subTree
+    then print the root
+
