@@ -1,0 +1,18 @@
+follows FIFO: first in first out  
+
+operations:
+    enqueue(x) === push back
+    dequeue(x) === pop from front
+    peek() === top element
+    empty() === to check if the queue is empty or not
+
+
+deque<int> dq;
+an stl which is the combination of queues and stacks
+.push_front
+.push_back
+.front()
+.back()
+.pop_front()
+.pop_back()
+
