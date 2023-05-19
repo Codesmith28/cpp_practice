@@ -1,27 +1,39 @@
 #include <iostream>
 using namespace std;
 
-#define rep(i, a, b) for (int i = a; i < b; i++)
-
 struct Node
 {
     int data;
     struct Node *right;
     struct Node *left;
 
+    // constructor
     Node(int val)
     {
         data = val;
         left = NULL;
-        right = NULL;
+        right = NULL
+        ;
     }
 };
 
-int search(int in[], int start, int end, int curr)
+void inorderTravel(struct Node *root)
 {
-    rep(i, start, end + 1)
+    if (root == NULL)
     {
-        if (in[i] == curr)
+        return;
+    }
+    inorderTravel(root->left);
+    cout << root->data << " ";
+    inorderTravel(root->right);
+}
+
+// search fn for pos of curr in inorder
+int search(int inorder[], int start, int end, int curr)
+{
+    for (int i = start; i <= end; i++)
+    {
+        if (inorder[i] == curr)
         {
             return i;
         }
@@ -29,55 +41,41 @@ int search(int in[], int start, int end, int curr)
     return -1;
 }
 
-Node *buildTree(int pre[], int in[], int start, int end)
+// input both the arrays and the start and end index of inorder array
+Node *buildTree(int preorder[], int inorder[], int start, int end)
 {
-    // as we don't want it to disaapear after iterations
-    static int idx = 0;
+    // base case for recursion
     if (start > end)
     {
         return NULL;
     }
 
-    int curr = pre[idx];
+    // static because we want to keep track of the index
+    static int idx = 0;
+
+    int curr = preorder[idx];
     idx++;
+
+    // making the new node for the current element
     Node *node = new Node(curr);
 
-    if (start == end)
-    {
-        return node;
-    }
-
-    int pos = search(in, start, end, curr);
-    node->left = buildTree(pre, in, start, pos - 1);
-    node->right = buildTree(pre, in, pos + 1, end);
+    int pos = search(inorder, start, end, curr);
+    // making the left subtree
+    node->left = buildTree(preorder, inorder, start, pos - 1);
+    // making the right subtree
+    node->right = buildTree(preorder, inorder, pos + 1, end);
 
     return node;
 }
 
-void inorder(struct Node *root)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-    inorder(root->left);
-    cout << root->data << " ";
-    inorder(root->right);
-}
-
 int main()
 {
-    // make a tree from preorder and inorder traversals of a tree
+    int preorder[] = {1, 2, 4, 3, 5};
+    int inorder[] = {4, 2, 1, 5, 3};
 
-    /* in preorder : first element is the main root */
-    /* hence all the elments before root is left subTree in inorder
-    and all the elements after root is right subTree in inorder */
-
-    int pre[] = {1, 2, 4, 3, 5};
-    int in[] = {4, 2, 1, 5, 3};
-
-    Node *root = buildTree(pre, in, 0, 4);
-    inorder(root);
-
+    // building the tree
+    Node *root = buildTree(preorder, inorder, 0, 4);
+    inorderTravel(root);
+    cout << endl;
     return 0;
 }
